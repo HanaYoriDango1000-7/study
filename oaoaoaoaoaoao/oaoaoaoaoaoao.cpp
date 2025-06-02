@@ -6,6 +6,7 @@
 
 int main()
 {
+
 	srand(time(0));
 	int inp;
 	int bot = 1 + rand()%5;
@@ -21,6 +22,7 @@ int main()
 			std::cout << "win\n";
 			bot = 1 + rand() % 5;
 			count++;
+
 		}
 		else {
 
