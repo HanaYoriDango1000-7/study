@@ -16,7 +16,7 @@ int main()
 	while (count < 3) {
 
 		std::cin >> inp;	
-
+		//
 		if (inp == bot) {
 
 			std::cout << "win\n";
