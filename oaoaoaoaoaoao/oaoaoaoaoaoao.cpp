@@ -1,4 +1,78 @@
 #include <iostream>
+#include <string>
+
+
+// DZZZZZZZZZZZZZZZZZZZZZZZZ----------------------------------
+// Прочитать про структуры, массивы в порядке возрастания - пузырьковый метод, 1.5 - симулятор магазина.
+
+int main() {
+
+	int x[5]{ 7, -1, 4, -9, 5 };
+
+	for (int i = 0; i < 5 ; i++) {
+		
+		if (x[i - 1] > x[i]) {
+
+			std::swap(x[i - 1], x[i]);
+			
+		}
+		
+		std::cout << x[i];
+
+	}
+}
+//using  namespace std;
+//
+//struct Point {
+//	int x, y;
+//
+//};
+//
+//struct Tree {
+//	string name;
+//	int ages;
+//	bool is_alive;
+//	float height;
+//	Point place;
+//
+//	void get_info() {
+//		std::cout << "Name: " << name << "Age: " << ages;
+//	}
+//};
+//
+//int main() {
+//	setlocale(LC_ALL, "RU");
+//
+//	Tree birch;
+//	birch.name = "Береза\n";
+//	birch.ages = 24;
+//	birch.place.x = 100;
+//	birch.place.y = 50;
+//
+//	Tree yelka;
+//	yelka.name = "Елка\n";
+//	yelka.ages = 5;
+//
+//	birch.get_info();
+//
+//	return 0;
+//}
+
+
+// DZZZZZZZZZZZZZZZZZZZZZZZZ-------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //void game() {
@@ -42,28 +116,7 @@
 //		}
 //	}
 // Прочитать про структуры, массивы в порядке возрастания - пузырьковый метод, 1.5 - симулятор магазина.
-// Наконец-то получилось клонировать и пушить репозиторий ееееееееее 
-int main() {
 
-	int x[5]{ 7, -1, 4, -9, 5 };
-
-	int p = -5;
-	p *= -1;
-	
-
-
-	for (int i = 0; i < 5 ; i++) {
-		
-		if (x[i] < 0) {
-
-			x[i] *= -1;
-
-		}
-		
-		std::cout << x[i];
-
-	}
-}
 
 	//std::cout << temp; 
 
@@ -93,8 +146,3 @@ int main() {
 	//	std::cout << bot << std::endl;
 
 	//}
-
-
-
-
-
