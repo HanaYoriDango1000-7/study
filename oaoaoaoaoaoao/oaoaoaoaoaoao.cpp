@@ -43,7 +43,7 @@ struct product {
 };
 
 
-
+//3333
 vector<product> shop;
 
 int main() {
