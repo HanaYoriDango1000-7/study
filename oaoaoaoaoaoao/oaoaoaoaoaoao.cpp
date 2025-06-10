@@ -1,28 +1,74 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
+
+using namespace std;
 
 // DZZZZZZZZZZZZZZZZZZZZZZZZ----------------------------------
 // ѕрочитать про структуры, массивы в пор€дке возрастани€ - пузырьковый метод, 1.5 - симул€тор магазина.
+void test() {
+	int mass[5]{ 7, -1, 4, -9, 5 };
+
+	for (int i = 1; i < 5; ++i)
+	{
+		for (int r = 0; r < 5 - i; r++)
+		{
+			if (mass[r] < mass[r + 1])
+			{
+				// ќбмен местами
+				int temp = mass[r];
+				mass[r] = mass[r + 1];
+				mass[r + 1] = temp;
+			}
+		}
+
+	}
+
+	for (int i = 0; i < 5; i++) {
+
+		cout << mass[i];
+
+	}
+}
+
+struct product {
+	string name;
+	int count;
+	int price;
+
+	
+
+
+};
+
+
+
+vector<product> shop;
 
 int main() {
 	setlocale(LC_ALL, "RU");
 
 
-	int x[5]{ 7, -1, 4, -9, 5 };
+	shop.push_back({ "tomato", 15, 250 });
+	shop.push_back({ "potato", 7, 40 });
 
-	for (int i = 0; i < 5 ; i++) {
-		
-		if (x[i - 1] > x[i]) {
-
-			std::swap(x[i - 1], x[i]);
-			
-		}
-		
-		std::cout << x[i];
-
+	for (int i = 0; i < shop.size(); i++) {
+		cout << shop[i].name << "\t" << shop[i].count << shop[i].price;
 	}
+	
+	
+	
+	
+
+
+
+
+
+
+
 }
+		
 //using  namespace std;
 //
 //struct Point {
