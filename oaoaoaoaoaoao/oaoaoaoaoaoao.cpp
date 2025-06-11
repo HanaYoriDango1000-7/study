@@ -2,73 +2,86 @@
 #include <string>
 #include <vector>
 
-
 using namespace std;
-
-// DZZZZZZZZZZZZZZZZZZZZZZZZ----------------------------------
-// Прочитать про структуры, массивы в порядке возрастания - пузырьковый метод, 1.5 - симулятор магазина.
-void test() {
-	int mass[5]{ 7, -1, 4, -9, 5 };
-
-	for (int i = 1; i < 5; ++i)
-	{
-		for (int r = 0; r < 5 - i; r++)
-		{
-			if (mass[r] < mass[r + 1])
-			{
-				// Обмен местами
-				int temp = mass[r];
-				mass[r] = mass[r + 1];
-				mass[r + 1] = temp;
-			}
-		}
-
-	}
-
-	for (int i = 0; i < 5; i++) {
-
-		cout << mass[i];
-
-	}
-}
 
 struct product {
 	string name;
 	int count;
-	int price;
-
-	
-
+	short price;
 
 };
 
-
-//3333
+// Создаем векторный массив  
 vector<product> shop;
 
 int main() {
 	setlocale(LC_ALL, "RU");
 
+// Создаем переменную в которой будем хранить денюги и результаты трат
+	short money, result;
+	money = 5000;
+// Создаем переменную для временного хранения инфы о выбранной покупке
+	string basket;
 
-	shop.push_back({ "tomato", 15, 250 });
-	shop.push_back({ "potato", 7, 40 });
+// Добавляем продукт, их кол-во и цену в массив
+shop.push_back({ "tomato", 3, 100 });
+shop.push_back({ "potato", 15, 150 });
+shop.push_back({ "chips", 10, 240 });
+shop.push_back({ "orange", 5, 80 });
+shop.push_back({ "cucumber", 100, 50 });
+
+// Выводим список продуктов, количество и цену
+cout << "Список продуктов в магазине: \n";
+for (int i = 0; i < shop.size(); i++) {
+	cout << shop[i].name << "\t" << shop[i].count << "\t" << shop[i].price << "\n";
+}
+
+// Даем покупателю выбрать 1 продукт
+for (short money2 = 5000; money2 > 0; money2 = result) {
+	std::cout << "Введите желаемый продукт: ";
+	std::cin >> basket;
+
+	if (basket == "tomato" && shop[0].count > 0) {
+		shop[0].count--;
+		result = money - 100;
+		money = result;
+	}
+	if (basket == "potato" && shop[1].count > 0) {
+		shop[1].count--;
+		result = money - 150;
+		money = result;
+	}
+	if (basket == "chips" && shop[2].count > 0) {
+		shop[2].count--;
+		result = money - 240;
+		money = result;
+	}
+	if (basket == "orange" && shop[3].count > 0) {
+		shop[3].count--;
+		result = money - 80;
+		money = result;
+	}
+	if (basket == "cucumber" && shop[4].count > 0) {
+		shop[4].count--;
+		result = money - 50;
+		money = result;
+	}
+	else {
+		cout << "Товара больше нет в наличии\n";
+	}
 
 	for (int i = 0; i < shop.size(); i++) {
-		cout << shop[i].name << "\t" << shop[i].count << shop[i].price;
+		cout << shop[i].name << "\t" << shop[i].count << "\t" << shop[i].price << "\n";
 	}
-	
-	
-	
-	
 
+	std::cout << "Ваш текущий счет: " << money << "\n";
+}
 
-
-
-
-
-
+	// Избавляемся от мусора
+	shop.clear();
 }
 		
+
 //using  namespace std;
 //
 //struct Point {
