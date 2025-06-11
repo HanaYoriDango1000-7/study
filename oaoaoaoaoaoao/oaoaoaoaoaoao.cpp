@@ -41,33 +41,45 @@ for (short money2 = 5000; money2 > 0; money2 = result) {
 	std::cout << "Введите желаемый продукт: ";
 	std::cin >> basket;
 
-	if (basket == "tomato" && shop[0].count > 0) {
+	if (basket == "tomato" || shop[0].count > 0) {
 		shop[0].count--;
 		result = money - 100;
 		money = result;
 	}
-	if (basket == "potato" && shop[1].count > 0) {
+	else if (shop[0].count == 0) {
+		cout << "Томатов больше нет в наличии\n";
+	}
+	if (basket == "potato" || shop[1].count > 0) {
 		shop[1].count--;
 		result = money - 150;
 		money = result;
 	}
-	if (basket == "chips" && shop[2].count > 0) {
+	else if (shop[1].count == 0) {
+		cout << "Картошки больше нет в наличии\n";
+	}
+	if (basket == "chips" || shop[2].count > 0) {
 		shop[2].count--;
 		result = money - 240;
 		money = result;
 	}
-	if (basket == "orange" && shop[3].count > 0) {
+	else if (shop[2].count == 0) {
+		cout << "Чипсов больше нет в наличии\n";
+	}
+	if (basket == "orange" || shop[3].count > 0) {
 		shop[3].count--;
 		result = money - 80;
 		money = result;
 	}
-	if (basket == "cucumber" && shop[4].count > 0) {
+	else if (shop[3].count == 0) {
+		cout << "Апельсинов больше нет в наличии\n";
+	}
+	if (basket == "cucumber" || shop[4].count > 0) {
 		shop[4].count--;
 		result = money - 50;
 		money = result;
 	}
-	else {
-		cout << "Товара больше нет в наличии\n";
+	else if (shop[4].count == 0) {
+		cout << "Огурцов больше нет в наличии\n";
 	}
 
 	for (int i = 0; i < shop.size(); i++) {
