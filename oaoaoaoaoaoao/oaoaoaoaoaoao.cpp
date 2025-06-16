@@ -4,143 +4,93 @@
 
 using namespace std;
 
+// Создаем шаблон магазина
 struct product {
 	string name;
 	int count;
 	short price;
 
 };
+ 
+// Создаем юзера 
+struct info {
+	int money = 5000;
+	string basket;
+	int choice;
+	vector<product> box;
+};
 
 // Создаем векторный массив  
 vector<product> shop;
+info user;
 
 int main() {
 	setlocale(LC_ALL, "RU");
 
-// Создаем переменную в которой будем хранить денюги и результаты трат
-	short money, result;
-	money = 5000;
-// Создаем переменную для временного хранения инфы о выбранной покупке
-	string basket;
+	// Добавляем продукт, их кол-во и цену в массив
+	shop.push_back({ "potato", 15, 150 });
+	shop.push_back({ "tomato", 3, 100 });
+	shop.push_back({ "chips", 10, 240 });
+	shop.push_back({ "orange", 5, 80 });
+	shop.push_back({ "cucumber", 100, 50 });
 
-// Добавляем продукт, их кол-во и цену в массив
-shop.push_back({ "tomato", 3, 100 });
-shop.push_back({ "potato", 15, 150 });
-shop.push_back({ "chips", 10, 240 });
-shop.push_back({ "orange", 5, 80 });
-shop.push_back({ "cucumber", 100, 50 });
+	while (user.money >= 0) {
 
-//Счетчик покупок для вывода списка 
-short tomato = 0;
-short potato = 0;
-short chips = 0;
-short orange = 0;
-short cucumber = 0;
+		// Запускаем цикл для демонстрации ассортимента 
+		cout << "Список продуктов в магазине: \n";
+		for (int i = 0; i < shop.size(); i++) {
+			cout << shop[i].name << "\t" << shop[i].count << "\t" << shop[i].price << "\n";
+		}
 
-// Выводим список продуктов, количество и цену
-cout << "Список продуктов в магазине: \n";
-for (int i = 0; i < shop.size(); i++) {
-	cout << shop[i].name << "\t" << shop[i].count << "\t" << shop[i].price << "\n";
+		//
+		std::cout << "Ваш текущий счет: " << user.money << "\n";
+		std::cout << "Введите желаемый продукт: ";
+		std::cin >> user.basket;
+		//
+
+		for (int i = 0; i < shop.size(); i++) {
+
+			if (user.basket == shop[i].name) {
+
+				std::cout << "Введите количество: ";
+				std::cin >> user.choice;
+
+				if (user.choice <= shop[i].count ) {
+
+					if (user.choice * shop[i].price <= user.money) {
+						
+						shop[i].count -= user.choice;
+						user.money -= user.choice * shop[i].price;
+						
+						user.box.push_back({ user.basket, user.choice });
+					}
+
+				} else {
+
+					cout << "Error \n";
+
+				}
+			}
+
+		}
+
+
+		if (user.basket == "info") {
+
+			cout << "Ваш счет: " << user.money << "\n";
+
+			for (int i = 0; i < user.box.size(); i++) {
+
+				cout << user.box[i].name << "\t" << user.box[i].count << "\n";
+
+			}
+
+		}
+
+	}
 }
 
-// Даем покупателю выбрать продукты
-for (short money2 = 5000; money2 > 0; money2 = result) {
 
-	// Вновь запускаем цикл для демонстрации ассортимента 
-	for (int i = 0; i < shop.size(); i++) {
-		cout << shop[i].name << "\t" << shop[i].count << "\t" << shop[i].price << "\n";
-	}
-
-	//
-	std::cout << "Ваш текущий счет: " << money << "\n";
-	std::cout << "Введите желаемый продукт: ";
-	std::cin >> basket;
-
-	//
-	if (basket == "tomato") {
-		if (shop[0].count > 0) {
-
-			shop[0].count--;
-			result = money - 100;
-			money = result;
-			tomato++;
-		}
-		else if (shop[0].count == 0) {
-			cout << "Томатов больше нет в наличии\n";
-		}
-	}
-	if (basket == "potato") {
-		if (shop[1].count > 0) {
-
-			shop[1].count--;
-			result = money - 150;
-			money = result;
-			potato++;
-		}
-		else if (shop[1].count == 0) {
-			cout << "Картошки больше нет в наличии\n";
-		}
-	}
-	if (basket == "chips") {
-		if (shop[2].count > 0) {
-			shop[2].count--;
-			result = money - 240;
-			money = result;
-			chips++;
-		}
-		else if (shop[2].count == 0) {
-			cout << "Чипсов больше нет в наличии\n";
-		}
-	}
-	if (basket == "orange") {
-		if (shop[3].count > 0) {
-			shop[3].count--;
-			result = money - 80;
-			money = result;
-			orange++;
-		}
-		else if (shop[3].count == 0) {
-			cout << "Апельсинов больше нет в наличии\n";
-		}
-	}
-	if (basket == "cucumber") {
-		if (shop[4].count > 0) {
-			shop[4].count--;
-			result = money - 50;
-			money = result;
-			cucumber++;
-		}
-		else if (shop[4].count == 0) {
-			cout << "Огурцов больше нет в наличии\n";
-		}
-	}
-	if (basket == "complete") {
-		cout << "Ваш список купленных продуктов: \n";
-		if (tomato > 0) {
-			cout << "Томаты: " << tomato << "Шт.\n";
-		}
-		if (chips > 0) {
-			cout << "Чипсы: " << chips << "Шт.\n";
-		}
-		if (orange > 0) {
-			cout << "Апельсины: " << orange << "Шт.\n";
-		}
-		if (potato > 0) {
-			cout << "Картошка: " << potato << "Шт.\n";
-		}
-		if (cucumber > 0) {
-			cout << "Огурцы: " << cucumber << "Шт.\n";
-		}
-		cout << "Общая сумма: " << 5000 - money;
-	//Завершение кода
-		result = 0;
-
-	}
-	}
-
-	// Избавляемся от мусора
-	shop.clear();
-}
 
 
 		
