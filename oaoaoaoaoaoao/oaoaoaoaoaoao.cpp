@@ -4,6 +4,8 @@
 
 using namespace std;
 
+
+
 // Создаем шаблон магазина
 struct product {
 	string name;
@@ -18,11 +20,25 @@ struct info {
 	string basket;
 	int choice;
 	vector<product> box;
+
+	void fix() {
+		if (user.basket == shop[i].name) {
+			if () {
+
+
+
+			}
+
+		}
+	}
+	
 };
 
 // Создаем векторный массив  
 vector<product> shop;
 info user;
+
+//
 
 int main() {
 	setlocale(LC_ALL, "RU");
@@ -45,7 +61,8 @@ int main() {
 		//
 		std::cout << "Ваш текущий счет: " << user.money << "\n";
 		std::cout << "Введите желаемый продукт: ";
-		std::cin >> user.basket;
+		/*std::cin >> user.basket;*/
+		/*fix();*/
 		//
 
 		for (int i = 0; i < shop.size(); i++) {
@@ -54,8 +71,9 @@ int main() {
 
 				std::cout << "Введите количество: ";
 				std::cin >> user.choice;
+			
 
-				if (user.choice <= shop[i].count ) {
+				if (user.choice <= shop[i].count && user.choice > 0) {
 
 					if (user.choice * shop[i].price <= user.money) {
 						
@@ -67,9 +85,12 @@ int main() {
 
 				} else {
 
-					cout << "Error \n";
+					cout << "Error: товар кончился, либо введено неверное количество \n";
 
 				}
+			}
+			else {
+				cout << "Error \n";
 			}
 
 		}
