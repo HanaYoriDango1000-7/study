@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <vector>
 
@@ -11,10 +11,10 @@ struct product {
 	string name;
 	int count;
 	short price;
-//дажпдпжвжв
+
 };
- 
-// Ñîçäàåì þçåðà 
+
+// Создаем юзера 
 struct info {
 	int money = 5000;
 	string basket;
@@ -31,10 +31,10 @@ struct info {
 
 		}
 	}
-	
+
 };
 
-// Ñîçäàåì âåêòîðíûé ìàññèâ  
+// Создаем векторный массив  
 vector<product> shop;
 info user;
 
@@ -43,7 +43,7 @@ info user;
 int main() {
 	setlocale(LC_ALL, "RU");
 
-	// Äîáàâëÿåì ïðîäóêò, èõ êîë-âî è öåíó â ìàññèâ
+	// Добавляем продукт, их кол-во и цену в массив
 	shop.push_back({ "potato", 15, 150 });
 	shop.push_back({ "tomato", 3, 100 });
 	shop.push_back({ "chips", 10, 240 });
@@ -52,8 +52,8 @@ int main() {
 
 	while (user.money >= 0) {
 
-		// Çàïóñêàåì öèêë äëÿ äåìîíñòðàöèè àññîðòèìåíòà 
-		cout << "Ñïèñîê ïðîäóêòîâ â ìàãàçèíå: \n";
+		// Запускаем цикл для демонстрации ассортимента 
+		cout << "Список продуктов в магазине: \n";
 		for (int i = 0; i < shop.size(); i++) {
 			cout << shop[i].name << "\t" << shop[i].count << "\t" << shop[i].price << "\n";
 		}
@@ -69,21 +69,22 @@ int main() {
 
 			if (user.basket == shop[i].name) {
 
-				std::cout << "Ââåäèòå êîëè÷åñòâî: ";
+				std::cout << "Введите количество: ";
 				std::cin >> user.choice;
-			
+
 
 				if (user.choice <= shop[i].count && user.choice > 0) {
 
 					if (user.choice * shop[i].price <= user.money) {
-						
+
 						shop[i].count -= user.choice;
 						user.money -= user.choice * shop[i].price;
-						
+
 						user.box.push_back({ user.basket, user.choice });
 					}
 
-				} else {
+				}
+				else {
 
 					cout << "Error: товар кончился, либо введено неверное количество \n";
 
@@ -98,7 +99,7 @@ int main() {
 
 		if (user.basket == "info") {
 
-			cout << "Âàø ñ÷åò: " << user.money << "\n";
+			cout << "Ваш счет: " << user.money << "\n";
 
 			for (int i = 0; i < user.box.size(); i++) {
 
@@ -114,7 +115,7 @@ int main() {
 
 
 
-		
+
 
 //using  namespace std;
 //
@@ -138,13 +139,13 @@ int main() {
 //int main() {
 //
 //	Tree birch;
-//	birch.name = "Áåðåçà\n";
+//	birch.name = "Береза\n";
 //	birch.ages = 24;
 //	birch.place.x = 100;
 //	birch.place.y = 50;
 //
 //	Tree yelka;
-//	yelka.name = "Åëêà\n";
+//	yelka.name = "Елка\n";
 //	yelka.ages = 5;
 //
 //	birch.get_info();
@@ -171,10 +172,10 @@ int main() {
 
 //void game() {
 //
-//	// Îáüÿâëåíèå ìàññèâ 
+//	// Обьявление массив 
 //	std::string x[3]{ "stone","sissors","paper" };
 //
-//	// Ñîçäàåì ïåðåìåííóþ äëÿ ðàíäîìà
+//	// Создаем переменную для рандома
 //	//int r = x[];
 //	srand(time(0));
 //
@@ -183,16 +184,16 @@ int main() {
 //	std::string player;
 //
 //
-//	// Îáúÿâëåì íà÷àëî öèêëà 
+//	// Объявлем начало цикла 
 //	for (int i = 0; i < 5; i++) {
 //
-//		// Èãðîê ââîäèò ñâîé âàðèàíò
+//		// Игрок вводит свой вариант
 //		std::cin >> player;
 //
-//		// Âûâîäèì õîä áîòà 
+//		// Выводим ход бота 
 //		std::cout << x[bot] << std::endl;
 //
-//		// Ñðàâíèâàåì è âûâîäèì win/lose/draw
+//		// Сравниваем и выводим win/lose/draw
 //		if (player == x[0] && x[bot] == x[1] ||
 //			player == x[1] && x[bot] == x[2] ||
 //			player == x[2] && x[bot] == x[0]) {
@@ -209,7 +210,7 @@ int main() {
 //			std::cout << "You lose\n";
 //		}
 //	}
-// Ïðî÷èòàòü ïðî ñòðóêòóðû, ìàññèâû â ïîðÿäêå âîçðàñòàíèÿ - ïóçûðüêîâûé ìåòîä, 1.5 - ñèìóëÿòîð ìàãàçèíà.
+// Прочитать про структуры, массивы в порядке возрастания - пузырьковый метод, 1.5 - симулятор магазина.
 
 
 	//std::cout << temp; 
