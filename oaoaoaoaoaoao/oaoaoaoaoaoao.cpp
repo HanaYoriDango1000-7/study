@@ -27,6 +27,32 @@ vector<product> shop;
 info user;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void fix() {
 
 	bool proverka = false;
