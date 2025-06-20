@@ -4,130 +4,79 @@
 
 using namespace std;
 
-
-// Создаем шаблон магазина
-struct product {
+struct location{
+	int number;
 	string name;
-	int count;
-	short price;
+	string discription;
+	vector<int> portal;
 
 };
 
-// Создаем юзера 
-struct info {
-	int money = 5000;
-	string basket;
-	int choice;
-	vector<product> box;
-	
+struct portal_ {
+	string name;
+	string target;
 };
 
-// Создаем векторный массив  
-vector<product> shop;
-info user;
+struct Player {
+	int current_loc = 0;
+};
+
+location room[4];
+Player hero;
+
+//
+
+void InitGame() {
+
+	room[0].name = "one";
+	room[1].name = "two";
+	room[2].name = "three";
+	room[3].name = "four";
+	room[0].portal.push_back(1);
+	room[0].portal.push_back(3);
+	room[1].portal.push_back(0);
+	room[0].discription = "Тут все заебались, куда пойдем?";
+	room[1].discription = "Тут круто";
+	room[2].discription = "Тут плохо"; 
+}
+
+//МЫ ВЫВОДИМ ИМЯ ЛОКАЦИИ В КОТОРОЙ НАХОДИТЬСЯ ИГРОК.
 
 
+void StartGame() {
 
+	cout << "Мы находимся здесь: " << room[0].name << "\n";//НЕ ПРАВИЛЬНО!!
+	cout << "Описание: " << room[0].discription << "\n";
 
+	bool exit = false;
+	string temp;
 
+	while (exit = true) {
+		// МЫ ВВОДИМ go и нам должно выдавать двери/порталы в ТЕКУЩЕЙ локции игрока
+		// Выбираем портал, и ТЕКУЩАЯ локация игрока меняется на локацию выбранную нами
 
-
-
-
-
-void fix() {
-
-	bool proverka = false;
-
-
-	while (proverka == false) {
-
-		std::cin >> user.basket;
-
-		if (user.basket == "tomato" ||
-			user.basket == "potato" ||
-			user.basket == "chips" ||
-			user.basket == "orange" ||
-			user.basket == "apple") {
-
-			proverka = true;
-
+		cin >> temp;
+		
+		if (temp == "go") {
+			
+			
 		}
-		else {
-			cout << "Введите корректное название: ";
-			//std::cin >> user.basket;
-		}
+		
 	}
+
 }
 
 int main() {
 	setlocale(LC_ALL, "RU");
+	InitGame();
+	StartGame();
 
-	// Добавляем продукт, их кол-во и цену в массив
-	shop.push_back({ "tomato", 3, 100 });
-	shop.push_back({ "potato", 15, 150 });
-	shop.push_back({ "chips", 10, 240 });
-	shop.push_back({ "orange", 5, 80 });
-	shop.push_back({ "apple", 10, 50 });
-
-	while (user.money >= 0) {
-
-		// Запускаем цикл для демонстрации ассортимента 
-		cout << "Список продуктов в магазине: \n";
-		cout << "Name\t" << "Count\t" << "Price" << std::endl;
-		for (int i = 0; i < shop.size(); i++) {
-			cout << shop[i].name << "\t" << shop[i].count << "\t" << shop[i].price << "\n";
-		}
-
-		// ввод
-		std::cout << "Ваш текущий счет: " << user.money << "\n";
-		std::cout << "Введите желаемый продукт: ";
-		
-		fix();
-
-		for (int i = 0; i < shop.size(); i++) {
-
-		// Проверка ввода пользователя на соответствие списку продуктов
-
-			if (user.basket == shop[i].name) {
-
-				std::cout << "Введите количество: ";
-
-				std::cin >> user.choice;
+	int x[4]{ 7 , -2 , 9 , 5 };
+	for (int i = 0; i < 4; i++ ) {
+	
+		x[0] = 1;
 
 
-				if (user.choice <= shop[i].count && user.choice > 0) {
-
-					if (user.choice * shop[i].price <= user.money) {
-
-						shop[i].count -= user.choice;
-						user.money -= user.choice * shop[i].price;
-
-						user.box.push_back({ user.basket, user.choice });
-					}
-
-				}
-				else {
-
-					cout << "Error 1 \n";
-
-				}
-			}
-			
-		}
-
-
-		if (user.basket == "info") {
-
-			cout << "Ваш счет: " << user.money << "\n";
-
-			for (int i = 0; i < user.box.size(); i++) {
-
-				cout << user.box[i].name << "\t" << user.box[i].count << "\n";
-
-			}
-
-		}
-
+		//cout << x[i];
 	}
 }
