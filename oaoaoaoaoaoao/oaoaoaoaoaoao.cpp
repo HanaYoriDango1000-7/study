@@ -20,32 +20,43 @@ struct info {
 	string basket;
 	int choice;
 	vector<product> box;
-
-	void fix() {
-		if (user.basket == shop[i].name) {
-			if () {
-
-
-
-			}
-
-		}
-	}
-
+	
 };
 
 // Создаем векторный массив  
 vector<product> shop;
 info user;
 
-//
+
+void fix() {
+
+	std::cin >> user.basket;
+	bool proverka = true;
+
+	while (proverka == true) {
+
+		if (user.basket == "tomato" ||
+			user.basket == "potato" ||
+			user.basket == "chips" ||
+			user.basket == "orange" ||
+			user.basket == "cucumber") {
+
+			proverka = false;
+
+		}
+		else {
+			cout << "Введите корректное название: ";
+			std::cin >> user.basket;
+		}
+	}
+}
 
 int main() {
 	setlocale(LC_ALL, "RU");
 
 	// Добавляем продукт, их кол-во и цену в массив
-	shop.push_back({ "potato", 15, 150 });
 	shop.push_back({ "tomato", 3, 100 });
+	shop.push_back({ "potato", 15, 150 });
 	shop.push_back({ "chips", 10, 240 });
 	shop.push_back({ "orange", 5, 80 });
 	shop.push_back({ "cucumber", 100, 50 });
@@ -58,12 +69,12 @@ int main() {
 			cout << shop[i].name << "\t" << shop[i].count << "\t" << shop[i].price << "\n";
 		}
 
-		//
+		// ввод
 		std::cout << "Ваш текущий счет: " << user.money << "\n";
 		std::cout << "Введите желаемый продукт: ";
-		/*std::cin >> user.basket;*/
-		/*fix();*/
-		//
+		
+		// Проверка ввода пользователя на соответствие списку продуктов
+		fix();
 
 		for (int i = 0; i < shop.size(); i++) {
 
@@ -87,13 +98,15 @@ int main() {
 				else {
 
 					cout << "Error: товар кончился, либо введено неверное количество \n";
+					std::cout << "Введите количество: ";
+					std::cin >> user.choice;
 
 				}
 			}
 			else {
-				cout << "Error \n";
+				cout << "Введите правильное название";
+				fix();
 			}
-
 		}
 
 
