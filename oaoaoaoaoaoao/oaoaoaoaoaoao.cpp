@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// Локации, имя, описание, порталы (двери)
 struct location{
 	string name;
 	string discription;
@@ -11,17 +12,20 @@ struct location{
 
 };
 
+// СОЗДАЛ СТРУКТУРУ для ПОРТАЛОВ portal_, в ней имя портала, и цель куда она ведет.
 struct portal_ {
 	string name;
 	string target;
 };
 
+// Игрок, текущее местоположение 
 struct Player {
 	int current_loc = 0;
 };
 
 location room[4];
 Player hero;
+vector <portal_> doors;
 
 //
 
@@ -34,44 +38,54 @@ void InitGame() {
 	room[0].portal.push_back(1);
 	room[0].portal.push_back(3);
 	room[1].portal.push_back(0);
-	room[0].discription = "Тут все заебались, куда пойдем?";
+	room[0].discription = "Тут все заебались";
 	room[1].discription = "Тут круто";
 	room[2].discription = "Тут плохо"; 
+	doors.push_back({"red", "blue"}); // дверь с ONE в TWO / 1 --> 2
+	doors.push_back({ "orange", "green" }); // дверь с ONE в FOUR / 1 --> 4
+	doors.push_back({ "indigo", "yellow" }); // с THREE в TWO / 3 --> 2
+	doors.push_back({ "pink", "grey" }); // с FOUR в THREE / 4 --> 3
+	doors.push_back({ "black", "violet" }); // с THREE в ONE / 3 --> 1
+
 }
-
-//МЫ ВЫВОДИМ ИМЯ ЛОКАЦИИ В КОТОРОЙ НАХОДИТЬСЯ ИГРОК.
-
-
-
 
 void StartGame() {
 
 	bool exit = false;
 	string temp;
+	string temp2;
 
 	int choice;
 
 	while (exit = true) {
 		
+		// Текущее местоположение игрока
 		cout << "Вы в локации \t" << room[hero.current_loc].name << std::endl;
-
-		// МЫ ВВОДИМ go и нам должно выдавать двери/порталы в ТЕКУЩЕЙ локции игрока
-		// Выбираем портал, и ТЕКУЩАЯ локация игрока меняется на локацию выбранную нами
-		//  СОЗДАТЬ СТРУКТУРУ для ПОРТАЛОВ portal_, в ней имя портала, и цель куда она ведет.
 
 		cin >> temp;
 		
 		if (temp == "go") {
 			for (int i = 0; i < room[hero.current_loc].portal.size();i++) {
 
-				cout  << room[hero.current_loc].portal[i] << std::endl;
+				cout << room[hero.current_loc].portal[i] << doors[hero.current_loc].name << std::endl;
 
 			}
-
+	
+		// Выбираем портал, и ТЕКУЩАЯ локация игрока меняется на локацию выбранную нами
 		cout << "Куда идем?\n";
-		cin >> choice;
+		cin >> temp2;
+		hero.current_loc = choice;
 
-		hero.current_loc = choice ;
+		//Перебираем двери с ввода пользователя
+		for (int i = 0; i < doors.size(); i++) {\
+
+			if (temp2 == doors[i].name) {
+
+
+
+			 }
+		
+		}
 
 		}
 		
