@@ -5,7 +5,6 @@
 using namespace std;
 
 struct location{
-	int number;
 	string name;
 	string discription;
 	vector<int> portal;
@@ -43,40 +42,54 @@ void InitGame() {
 //МЫ ВЫВОДИМ ИМЯ ЛОКАЦИИ В КОТОРОЙ НАХОДИТЬСЯ ИГРОК.
 
 
-void StartGame() {
 
-	cout << "Мы находимся здесь: " << room[0].name << "\n";//НЕ ПРАВИЛЬНО!!
-	cout << "Описание: " << room[0].discription << "\n";
+
+void StartGame() {
 
 	bool exit = false;
 	string temp;
 
+	int choice;
+
 	while (exit = true) {
+		
+		cout << "Вы в локации \t" << room[hero.current_loc].name << std::endl;
+
 		// МЫ ВВОДИМ go и нам должно выдавать двери/порталы в ТЕКУЩЕЙ локции игрока
 		// Выбираем портал, и ТЕКУЩАЯ локация игрока меняется на локацию выбранную нами
 
 		cin >> temp;
 		
 		if (temp == "go") {
-			
-			
+			for (int i = 0; i < room[hero.current_loc].portal.size();i++) {
+
+				cout  << room[hero.current_loc].portal[i] << std::endl;
+
+			}
+
+		cout << "Куда идем?\n";
+		cin >> choice;
+
+		hero.current_loc = choice ;
+
 		}
 		
 	}
 
 }
 
+
 int main() {
 	setlocale(LC_ALL, "RU");
 	InitGame();
 	StartGame();
 
-	int x[4]{ 7 , -2 , 9 , 5 };
+	/*int x[4]{ 7 , -2 , 9 , 5 };
 	for (int i = 0; i < 4; i++ ) {
 	
-		x[0] = 1;
+		x[i];
 
 
-		//cout << x[i];
-	}
+		cout << x[i];
+	}*/
 }
