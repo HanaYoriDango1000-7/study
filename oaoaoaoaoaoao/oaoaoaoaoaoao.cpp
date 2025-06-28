@@ -8,8 +8,6 @@ struct bots {
 	string name;
 	string discription;
 
-
-
 };
 
 // Создал структуру для предметов 
@@ -46,11 +44,40 @@ struct Player {
 location room[4];
 Player hero;
 string temp;
+bool check;
+//int id;
+//int counter = 0;
+//
+//void message_output() {
+//
+//	check = true;
+//
+//	while (check = true) {
+//		if (counter == 2) {
+//
+//			if (id == 1) {
+//				cout << "Здесь пусто, больше ничего нет";
+//				check = false;
+//			}
+//			else {
+//				check = false;
+//			}
+//
+//
+//		}
+//		else {
+//			check = false;
+//		}
+//
+//	}
+//
+//}
+
 
 // 
 void check_items() {
 
-	bool check = true;
+	check = true;
 
 	while (check = true) {
 
@@ -76,7 +103,7 @@ void check_items() {
 // 
 void check_portal() {
 
-	bool check = true;
+	check = true;
 
 	while (check == true) {
 
@@ -116,7 +143,7 @@ void check_portal() {
 void check_action(){
 
 	//
-	bool check = true;
+	check = true;
 
 	// 
 	while (check == true) {
@@ -223,12 +250,19 @@ void StartGame() {
 
 				if (room[hero.current_loc].name == room[hero.current_loc].loot[i].item_location) {
 
-					if (room[hero.current_loc].loot[i].count > 0) {
+					if (room[hero.current_loc].loot[i].count > 0 && room[hero.current_loc].loot[i].count != 0) {
 
-						hero.inventory.push_back({room[hero.current_loc].loot[hero.current_loc]});
+						hero.inventory.push_back({room[hero.current_loc].loot[i]});
+						room[hero.current_loc].loot[i].count--;
 						cout << "Вы нашли: " << hero.inventory[i].name << "\n";
 					} 
-
+					else {
+						// Решить проблему с двойным текстом!!!!!!!!!!!
+						cout << "Пусто";
+						/*counter++;
+						id = 1;
+						message_output();*/
+					}
 				}
 
 			}
