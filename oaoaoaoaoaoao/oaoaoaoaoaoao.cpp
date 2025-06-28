@@ -227,7 +227,7 @@ void StartGame() {
 
 						hero.inventory.push_back({room[hero.current_loc].loot[hero.current_loc]});
 						cout << "Вы нашли: " << hero.inventory[i].name << "\n";
-					}
+					} 
 
 				}
 
