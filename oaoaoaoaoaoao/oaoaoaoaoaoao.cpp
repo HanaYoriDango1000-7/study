@@ -45,34 +45,6 @@ location room[4];
 Player hero;
 string temp;
 bool check;
-//int id;
-//int counter = 0;
-//
-//void message_output() {
-//
-//	check = true;
-//
-//	while (check = true) {
-//		if (counter == 2) {
-//
-//			if (id == 1) {
-//				cout << "Здесь пусто, больше ничего нет";
-//				check = false;
-//			}
-//			else {
-//				check = false;
-//			}
-//
-//
-//		}
-//		else {
-//			check = false;
-//		}
-//
-//	}
-//
-//}
-
 
 // 
 void check_items() {
@@ -154,6 +126,9 @@ void check_action(){
 		else if (temp == "check") {
 			check = false;
 		}
+		else if (temp == "get") {
+			check = false;
+		}
 		else if (temp == "list") {
 			check = false;
 		}
@@ -161,7 +136,7 @@ void check_action(){
 			check = false;
 		}
 		else {
-			cout << "Выберите одно из действий: go, check room, list, use \n";
+			cout << "Выберите одно из действий: go, check, get, list, use \n";
 			cin >> temp;
 		}
 	}
@@ -207,13 +182,13 @@ void StartGame() {
 	// Создаем переменную для завершения цикла игры
 	bool exit = false;
 
+	// Показываем текущее местоположение игрока
+	cout << "Вы в: \t" << room[hero.current_loc].name << "\n" << room[hero.current_loc].discription << std::endl;
+
 	// начало игрового цикла 
 	while (exit == false) {
-		
-		// Показываем текущее местоположение игрока
-		cout << "Вы в: \t" << room[hero.current_loc].name << "\n" << room[hero.current_loc].discription << std::endl;
 
-		// Ожидаем ввода go
+		// Ожидаем ввода go/check/list/use/
 		cin >> temp;
 		check_action();
 		
@@ -238,58 +213,85 @@ void StartGame() {
 
 					// Присваиваем игроку новое текущее местоположение с таргета 
 					hero.current_loc = room[hero.current_loc].portal[i].target;
+					// Показываем текущее местоположение игрока
+					cout << "Вы в: \t" << room[hero.current_loc].name << "\n" << room[hero.current_loc].discription << std::endl;
 				}
+
+			}
+
+		}
+		else if (temp == "check") {
+
+			cout << "Здесь есть следующий лут: \n";
+
+			for (int i = 0; i < room[hero.current_loc].loot.size(); i++) {
+
+				cout << room[hero.current_loc].loot[i].name << "\t" << room[hero.current_loc].loot[i].count << "\n";
 
 			}
 
 		}
 		// Осматриваем комнату и что-то находим / не находим
-		else if (temp == "check") {
+		else if (temp == "get") {
 
 			for (int i = 0; i < room[hero.current_loc].loot.size(); i++) {
 
+				// Сравниваю ИМЯ ТЕКУЩЕЙ ЛОКАЦИИ с именем локации которой принадлежит предмет
 				if (room[hero.current_loc].name == room[hero.current_loc].loot[i].item_location) {
 
+					// Количество предметов в текущей комнате больше нуля и не равно нулю
 					if (room[hero.current_loc].loot[i].count > 0 && room[hero.current_loc].loot[i].count != 0) {
 
+						// Добавляем предметы с текущей комнаты в инвентарь игрока
 						hero.inventory.push_back({room[hero.current_loc].loot[i]});
+						
+						// Удаляем единицу с количества в локации и выводим что нашли 
+						cout << "Вы нашли: " << room[hero.current_loc].loot[i].name << "\n";
 						room[hero.current_loc].loot[i].count--;
-						cout << "Вы нашли: " << hero.inventory[i].name << "\n";
 					} 
 					else {
-						// Решить проблему с двойным текстом!!!!!!!!!!!
-						cout << "Пусто";
-						/*counter++;
-						id = 1;
-						message_output();*/
+						break;
+						// cout << "здесь больше ничего нет";
+						// нужно решить проблему с двойным выводом текста здесь 
+						// нужно разобраться с методом erase() который поможет удалит предметы с массива после его поднятия в ивнентарь
 					}
 				}
 
 			}
-
+		
 		}
+
 		// Смотрим инвентарь
 		else if (temp == "list") {
 
 			for (int i = 0; i < hero.inventory.size(); i++) {
 
-				cout << hero.inventory[i].name << "\n" << "Описание: " << hero.inventory[i].discription << std::endl;
+				cout << hero.inventory[i].name << "\t" << hero.inventory[i].count << "\n" << "Описание: " << hero.inventory[i].discription << std::endl;
 
 			}
-			cin >> temp; 
+		}
+		// Используем предмет если он есть в инвентаре 
+		else if (temp == "use") {
 
-			// Используем предмет если он есть в инвентаре 
-			if (temp == "use") {
-
+				// Ввод и его проверка
 				cout << "Введите имя предмета, который хотите использовать" << std::endl;
 				cin >> temp;
 				check_items();
 
+				// Перебираем инвентарь
 				for (int i = 0; i < hero.inventory.size(); i++) {
 
+					// Проверяем на имя предмета
 					if (temp == hero.inventory[i].name) {
 
-						if (room[hero.current_loc].name == hero.inventory[i].item_target) {
+						// Проверяем чтобы количество предмета не было меньше или равно нулю
+						if (hero.inventory[i].count > 0 && hero.inventory[i].count != 0) {
+
+							//Сравниваем имя текущей локации с целью предмета
+							if (room[hero.current_loc].name == hero.inventory[i].item_target) {
+
+
+							}
 
 						}
 
@@ -297,12 +299,11 @@ void StartGame() {
 				    }
 
 				}
-			}
 		}
-
 	}
-		
+
 }
+		
 
 int main() {
 	setlocale(LC_ALL, "RU");
