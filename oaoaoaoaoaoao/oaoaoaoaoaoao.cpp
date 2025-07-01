@@ -86,8 +86,6 @@ void check_items() {
 // 
 void check_portal() {
 
-	/*string name_portal[]{};*/
-
 	check = true;
 
 	while (check == true) {
@@ -99,17 +97,23 @@ void check_portal() {
 				check = false;
 				break;
 			}
-			else if(temp != room[hero.current_loc].portal[i].name && (i = room[hero.current_loc].portal.size() - 1)) {
 
-				cout << "Введите название одного из доступных порталов: " << std::endl;
+			 if(temp != room[hero.current_loc].portal[i].name && (i == room[hero.current_loc].portal.size() - 1)) {
+				
 
-				for (int i = 0; i < room[hero.current_loc].portal.size(); i++) {
+					cout << "Введите название одного из доступных порталов: " << std::endl;
 
-					cout << room[hero.current_loc].portal[i].name << std::endl;
+					for (int i = 0; i < room[hero.current_loc].portal.size(); i++) {
 
-				}
+						cout << room[hero.current_loc].portal[i].name << std::endl;
+						check = false;
 
-			}
+					
+
+					}
+
+				
+			 }
 
 		}
 	
@@ -121,31 +125,31 @@ void check_portal() {
 // Проверка на неправильность ввода 
 void check_action(){
 
-	//
+	string action[6]{"go", "check", "get", "list", "use", "drop"};
+
 	check = true;
 
-	// 
 	while (check == true) {
 
-		if (temp == "go") {
-			check = false;
-		}
-		else if (temp == "check") {
-			check = false;
-		}
-		else if (temp == "get") {
-			check = false;
-		}
-		else if (temp == "list") {
-			check = false;
-		}
-		else if (temp == "use") {
-			check = false;
-		}
-		else {
+		for (int i = 0; i < action[i].size(); i++ ) {
+
+			if (temp == action[i]) {
+
+				check = false;
+				break;
+			}
+			else if (temp != action[i] && (i == action[i].size() - 1)) {
+
 			cout << "Выберите одно из действий: go, check, get, list, use \n";
+
 			cin >> temp;
+
+			}
 		}
+
+
+			
+
 	}
 
 
@@ -229,7 +233,7 @@ void StartGame() {
 
 		}
 
-		else if (temp == "check") {
+		if (temp == "check") {
 
 			cout << "Здесь есть следующий лут: \n";
 
@@ -241,7 +245,7 @@ void StartGame() {
 
 		}
 		// Осматриваем комнату и что-то находим / не находим
-		else if (temp == "get") {
+		if (temp == "get") {
 
 			for (int i = 0; i < room[hero.current_loc].loot.size(); i++) {
 
@@ -274,7 +278,7 @@ void StartGame() {
 		}
 
 		// Смотрим инвентарь
-		else if (temp == "list") {
+		if (temp == "list") {
 
 			for (int i = 0; i < hero.inventory.size(); i++) {
 
@@ -282,8 +286,16 @@ void StartGame() {
 
 			}
 		}
+
+		//
+		if (temp == "drop") {
+
+			cout << "void";
+
+		}
+
 		// Используем предмет если он есть в инвентаре 
-		else if (temp == "use") {
+		if (temp == "use") {
 
 				// Ввод и его проверка
 				cout << "Введите имя предмета, который хотите использовать" << std::endl;
