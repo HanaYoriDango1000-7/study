@@ -10,6 +10,15 @@ struct bots {
 
 };
 
+enum class p {
+	axe,
+	sword,
+	hemlet
+
+};
+
+vector<string> a{"UGA BUGA", "OBAMA SOSAT", "LOX"};
+string word[3]{ "axe", "sword", "hemlet" };
 // Создал структуру для предметов 
 struct items {
 	string name;
@@ -17,6 +26,7 @@ struct items {
 	int count;
 	string item_target;
 	string item_location;
+	
 };
 
 // СОЗДАЛ СТРУКТУРУ для ПОРТАЛОВ portal_, в ней имя портала, и цель куда она ведет.
@@ -31,6 +41,7 @@ struct location{
 	string discription;
 	vector<portal_> portal;
 	vector<items> loot;
+	vector<p> items;
 
 };
 
@@ -75,37 +86,33 @@ void check_items() {
 // 
 void check_portal() {
 
+	/*string name_portal[]{};*/
+
 	check = true;
 
 	while (check == true) {
 
-		if (temp == "red") {
-			check = false;
-		}
-		else if (temp == "blue") {
-			check = false;
-		}
-		else if (temp == "violet") {
-			check = false;
-		}
-		else if (temp == "pink") {
-			check = false;
-		}
-		else if (temp == "black") {
-			check = false;
-		}
-		else if (temp == "green") {
-			check = false;
-		}
-		else {
-			cout << "Введите имя одного из доступных порталов: \n";
-			for (int i = 0; i < room[hero.current_loc].portal.size(); i++) {
+		for (int i = 0; i < room[hero.current_loc].portal.size(); i++) {
+			
+			if (temp == room[hero.current_loc].portal[i].name) {
 
-				cout << room[hero.current_loc].portal[i].name << std::endl;
+				check = false;
+				break;
+			}
+			else if(temp != room[hero.current_loc].portal[i].name && (i = room[hero.current_loc].portal.size() - 1)) {
+
+				cout << "Введите название одного из доступных порталов: " << std::endl;
+
+				for (int i = 0; i < room[hero.current_loc].portal.size(); i++) {
+
+					cout << room[hero.current_loc].portal[i].name << std::endl;
+
+				}
 
 			}
-			cin >> temp;
+
 		}
+	
 	}
 
 }
@@ -153,6 +160,7 @@ void InitGame() {
 	room[2].name = "Шахта";
 	room[3].name = "Пещера";
 
+	room[0].items.push_back(p::sword);
 	// Добавляем описание локаций
 	room[0].discription = "Мой уютный домик где я всегда могу хорошенько отдохнуть";
 	room[1].discription = "Отличное место чтобы расслабиться после тяжелого дня в шахте";
@@ -163,7 +171,7 @@ void InitGame() {
 	room[0].portal.push_back({ "red", 1 }); // дверь с ONE в TWO / 1 --> 2
 	room[0].portal.push_back({ "blue", 3 }); // дверь с ONE в FOUR / 1 --> 4
 	room[3].portal.push_back({ "pink", 2 }); // с FOUR в THREE / 4 --> 3
-	room[2].portal.push_back({ "violet", 1 }); // с THREE в TWO / 3 --> 2
+	room[2].portal.push_back({ "violet", 1 }); // с THREE в TWO / 3 --> 25
 	room[1].portal.push_back({ "black", 0 }); // с THREE в ONE / 3 --> 1
 	room[2].portal.push_back({ "green", 0 }); // с TWO в ONE / 2 --> 1
 
@@ -214,12 +222,13 @@ void StartGame() {
 					// Присваиваем игроку новое текущее местоположение с таргета 
 					hero.current_loc = room[hero.current_loc].portal[i].target;
 					// Показываем текущее местоположение игрока
-					cout << "Вы в: \t" << room[hero.current_loc].name << "\n" << room[hero.current_loc].discription << std::endl;
+					cout << "Вы переместились в: \t" << room[hero.current_loc].name << "\n" << room[hero.current_loc].discription << std::endl;
 				}
 
 			}
 
 		}
+
 		else if (temp == "check") {
 
 			cout << "Здесь есть следующий лут: \n";
@@ -247,6 +256,9 @@ void StartGame() {
 						
 						// Удаляем единицу с количества в локации и выводим что нашли 
 						cout << "Вы нашли: " << room[hero.current_loc].loot[i].name << "\n";
+						/*for (room[hero.current_loc]) {
+
+						}*/
 						room[hero.current_loc].loot[i].count--;
 					} 
 					else {
@@ -310,4 +322,6 @@ int main() {
 	InitGame();
 	StartGame();
 
+	cout << (int)room[0].items[0];
+	cout << a[0];
 }
