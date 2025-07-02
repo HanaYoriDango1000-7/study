@@ -4,12 +4,16 @@
 
 using namespace std;
 
-// Сделать инвентарь через класс и прописать все взаимодействия + проверка на правильностьт каждого ввода + реализация этих предметов и бота
+// Сделать инвентарь через класс и прописать все взаимодействия + проверка на правильностьт каждого ввода 
+// предметы можно брать выбирая их с локации 
+// + реализация этих предметов и бота
 
+enum class p {
+	axe,
+	sword,
+	hemlet
 
-
-
-
+};
 
 struct bots {
 	string name;
@@ -17,11 +21,9 @@ struct bots {
 
 };
 
-enum class p {
-	axe,
-	sword,
-	hemlet
-
+struct commands {
+	string name;
+	
 };
 
 vector<string> a{"UGA BUGA", "OBAMA SOSAT", "LOX"};
@@ -63,6 +65,7 @@ location room[4];
 Player hero;
 string temp;
 bool check;
+vector<commands> action;
 
 // 
 void check_items() {
@@ -145,25 +148,22 @@ void check_action(){
 				check = false;
 				break;
 			}
-			else if (temp != action[i] && (i == action[i].size() - 1)) {
+			if (temp != action[i] && (i == action[i].size() + 1)) {
 
-			cout << "Выберите одно из действий: go, check, get, list, use \n";
-
-			cin >> temp;
+				cout << "Введите одно из действий: go, check, get, list, use, drop";
+				 
 
 			}
 		}
-
-
-			
-
 	}
-
-
 }
 
 // Инициализируем составляющие игры
 void InitGame() {
+
+	// Добавляем имена команд для проверок 
+	action[0].name.push_back({"go"});
+
 
 	// Добавляем имена локаций, чтобы в дальньйшем сравниватьт их с вводом пользователя
 	room[0].name = "Дом";
