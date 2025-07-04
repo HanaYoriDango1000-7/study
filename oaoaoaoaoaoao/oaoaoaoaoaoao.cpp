@@ -254,10 +254,8 @@ void StartGame() {
 						
 						// Удаляем единицу с количества в локации и выводим что нашли 
 						cout << "Вы нашли: " << word[(int)room[hero.current_loc].item[i]] << "\n";
-						/*for (room[hero.current_loc]) {
-
-						}*/
-						room[hero.current_loc].loot[i].count--;
+					
+						count_items;
 					} 
 					else {
 						break;
