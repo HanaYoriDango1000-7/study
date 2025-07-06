@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -121,7 +122,7 @@ void check_portal() {
 // Проверка на неправильность ввода 
 void check_action(){
 
-	vector<string> action{"go", "pick", "list", "use", "drop", "inventory"};
+	vector<string> action{"go", "pick", "list", "use", "drop", "trunk", "help"};
 
 	check = true;
 
@@ -136,7 +137,7 @@ void check_action(){
 			}
 			if (temp != action[i] && (i == action.size() - 1)) {
 
-				cout << "Введите одно из действий: go, pick, list, inventory, use, drop \n";
+				cout << "Введите одно из действий: go, pick, list, trunk, use, drop, help \n";
 				 
 				cin >> temp;
 				
@@ -145,10 +146,8 @@ void check_action(){
 	}
 }
 
-// Инициализируем составляющие игры
-void InitGame() {
+void InitGame() { // Инициализируем составляющие игры
 
-	// Добавляем имена локаций, чтобы в дальньйшем сравниватьт их с вводом пользователя
 	room[0].name = "Дом";
 
 	room[0].item.push_back(items_::key);
@@ -179,8 +178,7 @@ void InitGame() {
 
 }
 
-// Начинаем игру
-void StartGame() {
+void StartGame() { // Начинаем игру
 
 	bool exit = false; 	// Создаем переменную для завершения цикла игры
 	cout << "Вы в: \t" << room[hero.current_loc].name << "\n" << room[hero.current_loc].discription << std::endl; // Показываем текущее местоположение игрока
@@ -212,11 +210,31 @@ void StartGame() {
 			}
 
 		}
-		if (temp == "inventory") { // Выводим инвентарь игрока
+		if (temp == "help") { // выводим игроку все команды и описание к ним
+
+			vector<string> action{ "go", "pick", "list", "use", "drop", "trunk" }; // список команд
+			vector<string> discription_commands{  // описания команд
+				"Перемещение", 
+				"Подобрать предмет", 
+				"Посмотреть предметы на локации", 
+				"Использовать предметы",
+				"Выкинуть предмет", 
+				"Багажник лол"}; 
+
+			cout << "Вы можете ввести следующие команды: \n";
+
+			for (int i = 0; i < action.size(); i++) {
+
+				cout << left << setw(25) << discription_commands[i] << "\t" << "\t" << action[i] << endl;
+
+			}
+
+		}
+		if (temp == "trunk") { // Выводим инвентарь игрока
 
 			for (int i = 0; i < hero.item.size(); i++) {
 
-				cout << word[(int)hero.item[i]] << endl;
+				cout << word[(int)hero.item[i]] << "\n" << discription_items[i] << endl;
 
 			}
 
@@ -243,7 +261,7 @@ void StartGame() {
 		
 			for (int i = 0; i < room[hero.current_loc].item.size(); i++) {
 
-				cout << word[(int)room[hero.current_loc].item[i]] << "\n" << "Описание: " << discription_items[i] << std::endl;
+				cout << word[(int)room[hero.current_loc].item[i]] << "\n" << "Описание: " << discription_items[i] << endl;
 
 			}
 		}
@@ -251,17 +269,16 @@ void StartGame() {
 
 			cout << "Напишите имя предмета, который хотите выбросить \n";
 			cin >> temp;
-			check_items();
+			check_items(); // Проверка на неправильность ввода
 
 			for (int i = 0; i < hero.item.size(); i++) {
 			
 				if (temp == word[(int)hero.item[i]]) {
 				
+					cout << "Вы выбросили: " << word[(int)hero.item[i]] << endl;
+					room[hero.current_loc].item.emplace_back(hero.item[i]);
 					hero.item.erase(hero.item.cbegin() + i);
 
-					room[hero.current_loc].item.emplace_back(hero.item[i]);
-
-				
 				}
 			
 			}
@@ -270,8 +287,8 @@ void StartGame() {
 		if (temp == "use") { // Используем предмет
 
 				cout << "Введите имя предмета, который хотите использовать \n";
-				cin >> temp; // Ввод и его проверка
-				check_items();
+				cin >> temp; 
+				check_items(); // Ввод и его проверка
 
 				for (int i = 0; i < hero.item.size(); i++) { // Перебираем инвентарь
 
@@ -280,10 +297,7 @@ void StartGame() {
 						cout << "efwsef";
 
 					}
-
-
 				}
-
 		}   
 	}
 }
@@ -292,6 +306,5 @@ int main() {
 	setlocale(LC_ALL, "RU");
 	InitGame();
 	StartGame();
-
 
 }
