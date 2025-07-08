@@ -42,13 +42,13 @@ struct evil_bots_ {
 	int attack = 10;
 
 };
-vector<string> discription_items{"Открывает розовый портал", 
-								"Осветит темноту на твоем пути", 
+vector<string> discription_items{ "Открывает розовый портал",
+								"Осветит темноту на твоем пути",
 								"Оно дорого стоит..."
 								"Ключ от усыпальницы"
-                                "Боевой топор"
-                                "Отличный щит"};
-string word[6]{ "key", "torch", "gold", "dark key", "axe", "shield"};
+								"Боевой топор"
+								"Отличный щит" };
+string word[6]{ "key", "torch", "gold", "dark key", "axe", "shield" };
 
 struct portal_ { // имя портала, и цель куда он ведет, открыт/закрыт eef
 	string name;
@@ -81,11 +81,27 @@ evil_bots_ skelet;
 string temp;
 bool check;
 
-void output_items_dis() {
+void zaebali_moi_ebanye_opisaniy() {
+
+	string temp_dis;
+	int temp_word;
+	
+	
+
+	for (int i = 0; i < hero.item.size(); i++) {
+
+		temp_word = hero.item.
 
 
+
+		
+		cout << left << setw(10) << word[(int)hero.item[i]] << "\t" << "1x" << endl;
+
+
+	}
 
 }
+
 void check_items() { // проверка на ввод предметов
 
 	vector<string> items{ "key", "torch", "gold", "dark key", "axe", "shield" };
@@ -187,9 +203,9 @@ void InitGame() { // Инициализируем составляющие иг�
 	trader.item_.push_back(items_::d_key);
 	trader.item_.push_back(items_::axe);
 	trader.item_.push_back(items_::shield);
-	trader.item.push_back({"dark key", "похоже что это ключ от чьей-то усыпальницы", 100, 1 });
-	trader.item.push_back({"axe", "боевой топор", 100, 2 });
-	trader.item.push_back({"shield", "поможет защититься от атаки противника", 100, 3});
+	trader.item.push_back({"dark key", "Ключ от чьей-то усыпальницы", 100, 1 });
+	trader.item.push_back({"axe", "Боевой топор", 100, 2 });
+	trader.item.push_back({"shield", "Поможет защититься от атаки противника", 100, 3});
 	 
 	 
 	
@@ -275,12 +291,12 @@ void StartGame() { // Начинаем игру
 
 				while (trader.active) {
 
-					if (hero.wallet > 0 && hero.wallet != 0) {
+					if (!trader.item.empty()) {
+						
+						if (hero.wallet > 0 && hero.wallet != 0) {
 
-						if (!trader.item.empty()) {
-
-							cout << "Хозяин таверны: захотел купить у меня что-нибудь? \n";
-							cout << "Ну, налетай! Вот все что у меня есть: \n";
+							cout << "Хозяин таверны: скажи, если что пригляделось \n";
+							cout << "Вот все что у меня есть: \n";
 							cout << "Наименование" << "\t" << "Цена" << endl;
 							for (int i = 0; i < trader.item.size(); i++) {
 
@@ -293,25 +309,28 @@ void StartGame() { // Начинаем игру
 							for (int i = 0; i < trader.item.size(); i++) {
 
 								if (num == trader.item[i].num) {
-									if (trader.item[i].price < hero.wallet) {
+									if (trader.item[i].price <= hero.wallet) {
 
  										switch (num) {
 										case(1): 
 										hero.wallet -= 1 * trader.item[i].price;
 										hero.item.emplace_back(trader.item_[i]);
 										trader.item.erase(trader.item.cbegin() + i);
+										trader.item_.erase(trader.item_.cbegin() + i);
 										cout << "Без понятия зачем тебе этот ключ, но с тобой приятно иметь дело \n";
 											break;
 										case(2): 
 										hero.wallet -= 1 * trader.item[i].price;
 										hero.item.emplace_back(trader.item_[i]);
 										trader.item.erase(trader.item.cbegin() + i);
+										trader.item_.erase(trader.item_.cbegin() + i);
 										cout << "Хороший выбор \n";
 											break;
 										case(3): 
 										hero.wallet -= 1 * trader.item[i].price;
 										hero.item.emplace_back(trader.item_[i]);
 										trader.item.erase(trader.item.cbegin() + i);
+										trader.item_.erase(trader.item_.cbegin() + i);
 										cout << "Спасибо за покупку! \n";
 											break;
 
@@ -324,16 +343,21 @@ void StartGame() { // Начинаем игру
 									trader.active = false;
 									
 								}
+								if (num != 0 && (i == trader.item.size() - 1)) {
+
+									cout << "Введите корректный выбор \n";
+
+								}
 							}
 						}
 						else {
-							cout << "Хозяин таверны: прости, но у меня больше ничего нет. Приходи в другой раз\n";
+							cout << "Хозяин таверны: нет денег - нет товаров, уж прости \n";
 							trader.active = false;
 						
 						}
 					}
 					else {
-						cout << "Хозяин таверны: нет денег - нет товаров, уж прости \n";
+						cout << "Хозяин таверны: прости, но у меня больше ничего нет. Приходи в другой раз\n";
 						trader.active = false;
 
 					}
@@ -354,7 +378,7 @@ void StartGame() { // Начинаем игру
 				"Использовать предметы",
 				"Выкинуть предмет", 
 				"Багажник лол",
-			    "Взаимодействие с дружественным ботом"};
+			    "Взаимодействие с мирным ботом"};
 				
 
 			cout << "Вы можете ввести следующие команды: \n";
@@ -368,19 +392,8 @@ void StartGame() { // Начинаем игру
 		}
 		if (temp == "trunk") { // Выводим инвентарь игрока
 
-			for (int i = 0; i < hero.item.size(); i++) {
-				for (int j = 0; j < discription_items.size(); j++) {
-					if (i == j) {
-
-						cout << word[(int)hero.item[i]] << "\n" << discription_items[i] << endl;
-
-					}
-
-
-				
-
-				}
-			}
+			zaebali_moi_ebanye_opisaniy();
+			
 		}
 		if (temp == "pick") { // Подбираем предмет
 
