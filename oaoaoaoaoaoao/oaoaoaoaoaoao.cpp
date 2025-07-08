@@ -44,13 +44,14 @@ struct evil_bots_ {
 };
 vector<string> discription_items{ "Открывает розовый портал",
 								"Осветит темноту на твоем пути",
-								"Оно дорого стоит..."
-								"Ключ от усыпальницы"
-								"Боевой топор"
+								"Оно дорого стоит...",
+								"Ключ от усыпальницы",
+								"Боевой топор",
 								"Отличный щит" };
+
 string word[6]{ "key", "torch", "gold", "dark key", "axe", "shield" };
 
-struct portal_ { // имя портала, и цель куда он ведет, открыт/закрыт eef
+struct portal_ { // имя портала, и цель куда он ведет, открыт/закрыт 
 	string name;
 	int target;
 	bool open = true;
@@ -80,27 +81,6 @@ peaceful_bots_ trader;
 evil_bots_ skelet;
 string temp;
 bool check;
-
-void zaebali_moi_ebanye_opisaniy() {
-
-	string temp_dis;
-	int temp_word;
-	
-	
-
-	for (int i = 0; i < hero.item.size(); i++) {
-
-		temp_word = hero.item.
-
-
-
-		
-		cout << left << setw(10) << word[(int)hero.item[i]] << "\t" << "1x" << endl;
-
-
-	}
-
-}
 
 void check_items() { // проверка на ввод предметов
 
@@ -385,14 +365,18 @@ void StartGame() { // Начинаем игру
 
 			for (int i = 0; i < action.size(); i++) {
 
-				cout << left << setw(25) << discription_commands[i] << "\t" << "\t" << action[i] << endl;
+				cout << left << setw(35) << discription_commands[i] << "\t" << action[i] << endl;
 
 			}
 
 		}
 		if (temp == "trunk") { // Выводим инвентарь игрока
 
-			zaebali_moi_ebanye_opisaniy();
+			for (int i = 0; i < hero.item.size(); i++) {
+
+					cout << left << setw(10) << word[(int)hero.item[i]] << "\t"  << discription_items[(int)hero.item[i]] << endl;
+					//discription_items[(int)hero.item[i]] <<
+			}
 			
 		}
 		if (temp == "pick") { // Подбираем предмет
