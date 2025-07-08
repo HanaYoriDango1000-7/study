@@ -6,8 +6,6 @@
 
 using namespace std;
 
-// + реализация этих предметов и бота
-
 enum class items_ {
 	key,
 	torch,
@@ -78,7 +76,7 @@ struct Player { // у игрока есть текущее местополож�
 location room[5];
 Player hero;
 peaceful_bots_ trader;
-evil_bots_ skelet;
+evil_bots_ skeleton;
 string temp;
 bool check;
 
@@ -375,7 +373,7 @@ void StartGame() { // Начинаем игру
 			for (int i = 0; i < hero.item.size(); i++) {
 
 					cout << left << setw(10) << word[(int)hero.item[i]] << "\t"  << discription_items[(int)hero.item[i]] << endl;
-					//discription_items[(int)hero.item[i]] <<
+					//discription_items[(int)hero.item[i]] << эта херня все ломает когда сюда добавляется предмет с магазина
 			}
 			
 		}
@@ -401,7 +399,7 @@ void StartGame() { // Начинаем игру
 		
 			for (int i = 0; i < room[hero.current_loc].item.size(); i++) {
 
-				cout << word[(int)room[hero.current_loc].item[i]] << "\n" << "Описание: " << discription_items[i] << endl;
+				cout << word[(int)room[hero.current_loc].item[i]] << "\n" << "Описание: " << discription_items[(int)room[hero.current_loc].item[i]] << endl;
 
 			}
 		}
@@ -444,7 +442,7 @@ void StartGame() { // Начинаем игру
 								room[hero.current_loc].portal[i].open ? room[hero.current_loc].portal[i].open = false : room[hero.current_loc].portal[i].open = true;
 								cout << room[hero.current_loc].portal[i].name << "\t" << (room[hero.current_loc].portal[i].open ? " теперь открыт" : "теперь закрыт") << endl;
 								hero.item.erase(hero.item.cbegin() + i);
-
+								// key ломается если меняется его позиция в инвентаре
 							}
 
 						}
