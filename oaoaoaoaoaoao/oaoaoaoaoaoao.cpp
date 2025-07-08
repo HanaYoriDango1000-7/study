@@ -50,7 +50,7 @@ vector<string> discription_items{"Открывает розовый портал
                                 "Отличный щит"};
 string word[6]{ "key", "torch", "gold", "dark key", "axe", "shield"};
 
-struct portal_ { // имя портала, и цель куда он ведет, открыт/закрыт
+struct portal_ { // имя портала, и цель куда он ведет, открыт/закрыт eef
 	string name;
 	int target;
 	bool open = true;
@@ -80,7 +80,12 @@ peaceful_bots_ trader;
 evil_bots_ skelet;
 string temp;
 bool check;
- 
+
+void output_items_dis() {
+
+
+
+}
 void check_items() { // проверка на ввод предметов
 
 	vector<string> items{ "key", "torch", "gold", "dark key", "axe", "shield" };
@@ -364,14 +369,18 @@ void StartGame() { // Начинаем игру
 		if (temp == "trunk") { // Выводим инвентарь игрока
 
 			for (int i = 0; i < hero.item.size(); i++) {
-				if (hero.item[i] == discription_items[i]) {
-					dfse
+				for (int j = 0; j < discription_items.size(); j++) {
+					if (i == j) {
+
+						cout << word[(int)hero.item[i]] << "\n" << discription_items[i] << endl;
+
+					}
+
+
+				
 
 				}
-				cout << word[(int)hero.item[i]] << "\n" << discription_items[i] << endl;
-
 			}
-
 		}
 		if (temp == "pick") { // Подбираем предмет
 
