@@ -365,7 +365,7 @@ void StartGame() { // Начинаем игру
 
 			for (int i = 0; i < hero.item.size(); i++) {
 				if (hero.item[i] == discription_items[i]) {
-					wdd
+					dfse
 
 				}
 				cout << word[(int)hero.item[i]] << "\n" << discription_items[i] << endl;
