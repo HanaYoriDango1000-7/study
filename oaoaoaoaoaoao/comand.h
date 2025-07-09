@@ -262,7 +262,7 @@ void use_items() {
 						auto& p = room[hero.current_loc].portal[i];
 
 						p.open ? p.open = false : p.open = true;
-						cout << p.name << "\t" << (room[hero.current_loc].portal[i].open ? " теперь открыт" : "теперь закрыт") << endl;
+						cout << p.name << "\t" << (room[hero.current_loc].portal[i].open ? " теперь открыт \n" : "теперь закрыт \n");
 						hero.item.erase(hero.item.cbegin() + i);
 
 					}
@@ -285,6 +285,11 @@ void use_items() {
 					}
 				}
 
+			}
+			if (hero.item.empty() || temp != word[(int)hero.item[i]] && (i == hero.item.size())) {
+
+				cout << "ERROR NOT FOUND \n";
+				
 			}
 		}
 	}

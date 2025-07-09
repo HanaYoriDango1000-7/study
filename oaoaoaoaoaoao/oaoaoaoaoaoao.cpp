@@ -1,11 +1,5 @@
 ﻿#include "comand.h"
 
-
-
-
-
-
-
 void StartGame() { // Начинаем игру
 
 	bool life = true; 	// Создаем переменную для завершения цикла игры
@@ -77,7 +71,7 @@ int main() {
 }
 /*///////
 emplace_back мне ломает команды мудила((  dqdhtrhrtert
-
+cdcdcdc
 
 
 
