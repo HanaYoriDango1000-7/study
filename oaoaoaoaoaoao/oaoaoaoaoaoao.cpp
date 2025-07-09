@@ -292,21 +292,21 @@ void StartGame() { // Начинаем игру
  										switch (num) {
 										case(1): 
 										hero.wallet -= 1 * trader.item[i].price;
-										hero.item.emplace_back(trader.item_[i]);
+										hero.item.push_back(trader.item_[i]);
 										trader.item.erase(trader.item.cbegin() + i);
 										trader.item_.erase(trader.item_.cbegin() + i);
 										cout << "Без понятия зачем тебе этот ключ, но с тобой приятно иметь дело \n";
 											break;
 										case(2): 
 										hero.wallet -= 1 * trader.item[i].price;
-										hero.item.emplace_back(trader.item_[i]);
+										hero.item.push_back(trader.item_[i]);
 										trader.item.erase(trader.item.cbegin() + i);
 										trader.item_.erase(trader.item_.cbegin() + i);
 										cout << "Хороший выбор \n";
 											break;
 										case(3): 
 										hero.wallet -= 1 * trader.item[i].price;
-										hero.item.emplace_back(trader.item_[i]);
+										hero.item.push_back(trader.item_[i]);
 										trader.item.erase(trader.item.cbegin() + i);
 										trader.item_.erase(trader.item_.cbegin() + i);
 										cout << "Спасибо за покупку! \n";
@@ -373,7 +373,7 @@ void StartGame() { // Начинаем игру
 			for (int i = 0; i < hero.item.size(); i++) {
 
 					cout << left << setw(10) << word[(int)hero.item[i]] << "\t"  << discription_items[(int)hero.item[i]] << endl;
-					//discription_items[(int)hero.item[i]] << эта херня все ломает когда сюда добавляется предмет с магазина
+					
 			}
 			
 		}
@@ -388,7 +388,7 @@ void StartGame() { // Начинаем игру
 				if (temp == word[(int)room[hero.current_loc].item[i]]) {
 
 						cout << "Вы подобрали: " << word[(int)room[hero.current_loc].item[i]] << endl; // выводим что нашли
-						hero.item.emplace_back(room[hero.current_loc].item[i]); // Добавляем в инвентарь игрока
+						hero.item.push_back(room[hero.current_loc].item[i]); // Добавляем в инвентарь игрока
 						room[hero.current_loc].item.erase(room[hero.current_loc].item.cbegin() + i);// Удаляем с локации 
 
 				}
@@ -478,3 +478,10 @@ int main() {
 	StartGame();
 
 }
+/*///////
+emplace_back мне ломает команды((  
+
+
+
+
+*/
