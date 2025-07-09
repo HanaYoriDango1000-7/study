@@ -70,7 +70,7 @@ int main() {
 
 }
 /*///////
-emplace_back мне ломает команды мудила((  dqdhtrhrtert
+emplace_back мне ломает команды мудила((  dqdhtrhrtertefwf
 cdcdcdc
 
 
