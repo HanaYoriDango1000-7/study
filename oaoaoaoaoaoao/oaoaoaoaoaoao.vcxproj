@@ -129,6 +129,10 @@
   <ItemGroup>
     <ClCompile Include="oaoaoaoaoaoao.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="comand.h" />
+    <ClInclude Include="object.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
