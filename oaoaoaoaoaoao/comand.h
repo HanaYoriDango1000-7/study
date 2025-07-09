@@ -286,7 +286,7 @@ void use_items() {
 				}
 
 			}
-			if (hero.item.empty() || temp != word[(int)hero.item[i]] && (i == hero.item.size())) {
+			if (temp != word[(int)hero.item[i]] && (i == hero.item.size()) && hero.item.empty()) {
 
 				cout << "ERROR NOT FOUND \n";
 				
