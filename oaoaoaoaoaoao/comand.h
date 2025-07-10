@@ -257,13 +257,17 @@ void use_items() {
 					cin >> temp;
 					check_portal(temp);
 
-					if (temp == room[hero.current_loc].portal[i].name) {
+					for (int j = 0; j < room[hero.current_loc].portal.size(); j++) {
 
-						auto& p = room[hero.current_loc].portal[i];
+						if (temp == room[hero.current_loc].portal[j].name) {
 
-						p.open ? p.open = false : p.open = true;
-						cout << p.name << "\t" << (room[hero.current_loc].portal[i].open ? " теперь открыт \n" : "теперь закрыт \n");
-						hero.item.erase(hero.item.cbegin() + i);
+							auto& p = room[hero.current_loc].portal[j];
+
+							p.open ? p.open = false : p.open = true;
+							cout << p.name << "\t" << (room[hero.current_loc].portal[j].open ? " теперь открыт \n" : "теперь закрыт \n");
+							
+
+						}
 
 					}
 				}
@@ -277,6 +281,7 @@ void use_items() {
 						room[3].discription = "Теперь тут светло";
 						room[3].portal.push_back({ "purple", 4, true }); // 4 --> 5 он скрыт
 						hero.item.erase(hero.item.cbegin() + i);
+
 					}
 					else {
 
@@ -286,7 +291,8 @@ void use_items() {
 				}
 
 			}
-			if (temp != word[(int)hero.item[i]] && (i == hero.item.size()) && hero.item.empty()) {
+			else if (temp != word[(int)hero.item[i]] && hero.item.empty() ||
+				temp != word[(int)hero.item[i]] && (i == hero.item.size() - 1)) {
 
 				cout << "ERROR NOT FOUND \n";
 				

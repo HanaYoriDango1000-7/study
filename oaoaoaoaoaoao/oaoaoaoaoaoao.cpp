@@ -6,6 +6,9 @@ void StartGame() { // Начинаем игру
 	cout << "Вы в: \t" << room[hero.current_loc].name << "\n" << room[hero.current_loc].discription << endl; // Показываем текущее местоположение игрока
 	cout << "Для навигации воспользуйтесь командой help \n";
 
+
+
+
 	while (life == true) { // начало игрового цикла
 
 		cin >> temp; // Ожидаем ввода go/pick/list/use/
