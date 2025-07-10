@@ -249,7 +249,7 @@ void use_items() {
 
 		for (int i = 0; i < hero.item.size(); i++) { // Перебираем инвентарь
 
-			if (temp == word[(int)hero.item[i]]) { // Проверяем на имя предмета
+			if (temp == word[(int)hero.item[i]]) { // Проверяем на имя предметаwww
 
 				if (temp == "key") {
 
